@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "@/styles/ProductsPage.css";
-import { useCart } from "@/lib/CartContext";
 import { useCart, CartItem } from "@/lib/CartContext";
 
 interface Shade {
