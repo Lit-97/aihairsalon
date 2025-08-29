@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
+import { FirebaseError } from "firebase/app";
 
 export default function ForgotPasswordPage() {
   const { sendPasswordResetEmail } = useAuth();
@@ -23,8 +24,9 @@ export default function ForgotPasswordPage() {
     try {
       await sendPasswordResetEmail(email);
       setMessage("Password reset email sent! Please check your inbox.");
-    } catch (err: any) {
-      setError(err.message || "Failed to send reset email.");
+    } catch (err) {
+      const error = err as FirebaseError;
+      setError(error.message || "Failed to send reset email.");
     }
   };
 
@@ -45,7 +47,7 @@ export default function ForgotPasswordPage() {
         </h1>
 
         <p className="mb-6 text-gray-700">
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we&#39;ll send you a link to reset your password.
         </p>
 
         <form onSubmit={handleReset} className="space-y-4">
