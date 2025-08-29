@@ -15,14 +15,7 @@ export default function BookingFormPage() {
         setClientInfo,
     } = useBooking();
 
-    useEffect(() => {
-        if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) {
-            router.push("/bookings");
-        }
-    }, [selectedCategory, selectedService, selectedDate, selectedTime, router]);
-
-    if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) return null;
-
+    // ✅ All hooks must be declared before any conditional return
     const [fullName, setFullName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
@@ -30,6 +23,17 @@ export default function BookingFormPage() {
     const [hairPrefs, setHairPrefs] = useState<string[]>([]);
     const [addOns, setAddOns] = useState<string[]>([]);
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) {
+            router.push("/bookings");
+        }
+    }, [selectedCategory, selectedService, selectedDate, selectedTime, router]);
+
+    // ✅ conditional return happens AFTER hooks
+    if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) {
+        return null;
+    }
 
     const toggleHairPref = (pref: string) => {
         setHairPrefs((prev) =>
