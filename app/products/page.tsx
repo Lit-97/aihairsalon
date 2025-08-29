@@ -181,7 +181,7 @@ export default function ProductsPage() {
   const green = "#28a745";
 
   const getItemQty = (id: string) => {
-    const item = cart.find((i: any) => i.id === id);
+    const item = cart.find((i: CartItem) => i.id === id);
     return item ? item.qty : 0;
   };
 
