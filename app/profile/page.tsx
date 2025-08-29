@@ -288,10 +288,15 @@ export default function ProfilePage() {
     try {
       await sendPasswordResetEmail(auth, email);
       alert("Password reset email sent! Check your inbox.");
-    } catch (error: any) {
-      console.error("Error sending password reset email:", error);
-      alert("Failed to send reset email. Try again.");
-    }
+    } catch (error: unknown) {
+  if (error instanceof Error) {
+    console.error("Error sending password reset email:", error.message);
+    alert("Failed to send reset email. Try again.");
+  } else {
+    console.error("Unknown error sending password reset email:", error);
+    alert("Failed to send reset email. Try again.");
+  }
+}
   };
 
   return (
@@ -744,18 +749,30 @@ export default function ProfilePage() {
 
                                   alert("Email updated! Check your new email to verify it.");
                                   setEditingEmail(false);
-                                } catch (error: any) {
-                                  console.error("Error updating email:", error);
-                                  if (error.code === "auth/wrong-password") {
-                                    alert("Incorrect password.");
-                                  } else if (error.code === "auth/invalid-email") {
-                                    alert("Invalid email format.");
-                                  } else if (error.code === "auth/email-already-in-use") {
-                                    alert("This email is already in use.");
-                                  } else {
-                                    alert("Failed to update email. Try again.");
-                                  }
-                                }
+                                } catch (error: unknown) {
+  if (error instanceof Error) {
+    console.error("Error updating email:", error.message);
+  }
+
+  if (typeof error === "object" && error !== null && "code" in error) {
+    const err = error as { code?: string };
+    switch (err.code) {
+      case "auth/wrong-password":
+        alert("Incorrect password.");
+        break;
+      case "auth/invalid-email":
+        alert("Invalid email format.");
+        break;
+      case "auth/email-already-in-use":
+        alert("This email is already in use.");
+        break;
+      default:
+        alert("Failed to update email. Try again.");
+    }
+  } else {
+    alert("An unknown error occurred.");
+  }
+}
                               }}
                               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                             >
