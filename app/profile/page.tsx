@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import type { UserInfo } from "firebase/auth";
 import { getAuth, sendPasswordResetEmail, reauthenticateWithCredential, updateEmail, sendEmailVerification, EmailAuthProvider } from "firebase/auth";
 
 const US_STATES = [
@@ -54,7 +55,7 @@ export default function ProfilePage() {
   const displayName = user?.displayName ?? null;
   const email = user?.email ?? null;
   const photoURL = user?.photoURL ?? null;
-  const providerData = Array.isArray(user?.providerData) ? (user!.providerData as any[]) : [];
+  const providerData: UserInfo[] = Array.isArray(user?.providerData) ? user.providerData : [];
 
   const memberSince = user?.metadata?.creationTime ?? null;
   const lastLogin = user?.metadata?.lastSignInTime ?? null;
@@ -186,20 +187,34 @@ export default function ProfilePage() {
         "Your email has been updated! A verification email has been sent to your new email. " +
         "Please click the link in that email to verify it. Your account will now reflect the new email, but it will be marked as unverified until you complete verification."
       );
-    } catch (error: any) {
-      console.error("Error changing email:", error);
-      if (error.code === "auth/wrong-password") {
+    } catch (error: unknown) {
+  if (error instanceof Error) {
+    console.error("Error changing email:", error.message);
+  }
+
+  if (typeof error === "object" && error !== null && "code" in error) {
+    const err = error as { code?: string };
+    switch (err.code) {
+      case "auth/wrong-password":
         alert("Incorrect password. Please try again.");
-      } else if (error.code === "auth/invalid-email") {
+        break;
+      case "auth/invalid-email":
         alert("Invalid email format.");
-      } else if (error.code === "auth/email-already-in-use") {
+        break;
+      case "auth/email-already-in-use":
         alert("This email is already in use.");
-      } else if (error.code === "auth/requires-recent-login") {
+        break;
+      case "auth/requires-recent-login":
         alert("Please sign in again before changing your email.");
-      } else {
+        break;
+      default:
         alert("Failed to update email. Try again.");
-      }
     }
+  } else {
+    alert("An unknown error occurred.");
+  }
+}
+
   };
 
 
