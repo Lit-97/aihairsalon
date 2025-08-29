@@ -1,0 +1,121 @@
+.productsSection {
+    position: relative;
+    padding: 5rem 1.5rem;
+    background-color: #d9b68f;
+    overflow: hidden;
+}
+
+/* Subtle gold sparkle overlay */
+.productsSparkle {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.03) 2px, transparent 4px),
+        radial-gradient(circle at 80% 90%, rgba(212, 175, 55, 0.02) 3px, transparent 5px);
+    background-repeat: repeat;
+    background-size: 120px 120px;
+    z-index: 0;
+}
+
+.productsTitle {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    font-family: serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.productsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    /* slightly reduced for tighter spacing */
+    max-width: 1250px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.productCard {
+    background-color: #f8f1e7;
+    border-radius: 2rem;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    height: 420px;
+    /* default height for square jars */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.productCard.tall-card {
+    height: 480px;
+    /* taller for vertical/narrow bottles */
+}
+
+.productCard:hover {
+    border-color: #d4af37;
+    box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.5);
+    transform: scale(1.05);
+}
+
+.productImageContainer {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.productImage {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.7s ease-in-out;
+}
+
+/* Tall image class for narrow bottles */
+.productImage.tall-image {
+    max-height: 250px;
+}
+
+.productCard:hover .productImage {
+    transform: scale(1.05);
+}
+
+.productInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* ensures button and text remain visible */
+    align-items: center;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    gap: 0.2rem;
+    /* tighter spacing between elements */
+    min-height: 120px;
+}
+
+.productName {
+    font-family: serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #dcbf6a;
+    text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
+}
+
+.productDescription {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    color: #7b5e4a;
+    font-weight: 500;
+}

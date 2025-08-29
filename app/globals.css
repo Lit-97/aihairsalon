@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap');
+@import "tailwindcss";
+
+:root {
+
+  --background: #1c1c1c;
+  --foreground: #eee; 
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+
+  --primary-rose-light: #fef3bd;
+  --primary-rose: #e91e63;
+  --primary-gold: #ffd700;
+
+
+  --font-sans: 'Montserrat', Arial, Helvetica, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--primary-gold);
+  margin-top: 0;
+  font-weight: 700;
+}
+
+
+.text-gradient-pink-gold {
+  background: linear-gradient(90deg, #ff7eb9, #fef3bd, #ff7eb9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+a {
+  color: var(--primary-rose);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--primary-gold);
+}
+
+
+.bg-blush-gradient {
+  background: linear-gradient(to bottom right, #fef3bd, #f48fb1, #c2185b);
+}
+
+.text-rose-800 {
+  color: #880e4f;
+}
+
+.border-gold-500 {
+  border-color: rgba(255, 215, 0, 0.9);
+}
+
+.drop-shadow-md {
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+}

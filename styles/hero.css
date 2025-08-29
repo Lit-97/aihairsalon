@@ -1,0 +1,40 @@
+.glare-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.glare-button .glare {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+  border-radius: 9999px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10; /* keep it above the button background */
+}
+
+.glare-button:hover .glare {
+  opacity: 0.3;
+  animation: glide 1s ease forwards;
+}
+
+@keyframes glide {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}

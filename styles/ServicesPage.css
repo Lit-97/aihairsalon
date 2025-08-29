@@ -1,0 +1,89 @@
+/* styles/ServicesPage.css */
+
+/* Page background and spacing */
+.services-page {
+  font-family: 'Georgia', serif;
+  color: #1a1a1a;
+  padding-bottom: 4rem;
+}
+
+/* Category headings */
+.service-category h2 {
+  font-family: 'Playfair Display', serif;
+  color: #1a1a1a;
+  letter-spacing: 0.5px;
+  position: relative;
+  margin-bottom: 1.5rem;
+  font-size: 2.25rem;
+}
+
+/* Add a subtle gold accent line under headings */
+.service-category h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #dcbf6a, #b79520);
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+/* Service category container card */
+.service-category {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 0 0 15px rgba(220,191,106,0.4);
+}
+
+/* Service list */
+.service-category ul {
+  margin-top: 1rem;
+}
+
+/* Service item rows */
+.service-category li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 1.05rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-bottom: 1px solid #e0d8c9;
+}
+
+.service-category li:hover {
+  background-color: rgba(220, 191, 106, 0.1);
+  transform: translateX(5px);
+  border-bottom: 2px solid #dcbf6a;
+}
+
+/* Service name */
+.service-category li span:first-child {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Service price */
+.service-category li span:last-child {
+  font-weight: 600;
+  color: #b79520;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .service-category li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .service-category li span:last-child {
+    margin-top: 0.25rem;
+  }
+}

@@ -1,0 +1,73 @@
+.react-calendar {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  background-color: white;
+  padding: 1rem;
+}
+
+.react-calendar__tile {
+  padding: 10px 6.6667px;
+  background: transparent;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 6px;
+}
+
+.react-calendar__tile:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.react-calendar__tile--active {
+  background-color: #2d89ef;
+  color: white;
+  border-radius: 6px;
+}
+
+.react-calendar__tile,
+.react-calendar__month-view__days__day--weekend,
+.react-calendar__tile--now,
+.react-calendar__tile--active abbr {
+  color: black !important;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  color: black !important;
+}
+
+.react-calendar__navigation__label {
+  color: black !important;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.react-calendar__navigation__arrow {
+  color: black !important;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__days__day:nth-child(7n) abbr {
+  color: red !important;
+}
+
+.booking-book-now-button {
+  background: linear-gradient(90deg, #ffffff, #dcbf6a, #ffffff);
+  background-size: 200% 200%;
+  color: #8a5302ff;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  padding: 0.65rem 2.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 6px 25px rgba(201, 161, 76, 0.6);
+  transition: all 0.3s ease;
+}
+
+.booking-book-now-button:hover {
+  background-position: 100% 0;
+  color: #d9a55c;
+  filter: brightness(1.05);
+  box-shadow: 0 0 25px rgba(201, 161, 76, 0.7);
+  cursor: pointer;
+}

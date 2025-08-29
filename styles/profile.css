@@ -1,0 +1,121 @@
+.profile-main {
+    background-color: #EFE6DD;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.profile-main h1 {
+    color: #e6c96a !important;
+}
+
+.profile-section {
+    width: 100%;
+    max-width: 60rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.profile-section h2 {
+    color: #dcbf6a;
+    font-weight: 600;
+}
+
+.sidebar-button {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+    color: #4b5563;
+    background: transparent;
+}
+
+.sidebar-button.active {
+    border-left-color: #dcbf6a;
+    color: #dcbf6a;
+    font-weight: 600;
+    background-color: #f9fafb;
+}
+
+.sidebar-button:hover {
+    background-color: #f9fafb;
+    color: #dcbf6a;
+}
+
+.book-now-link {
+    color: #f1d36e;
+}
+
+.book-now-link:hover {
+    color: #e6c96a;
+}
+
+.shop-now-link {
+    color: #f1d36e;
+}
+
+.shop-now-link:hover {
+    color: #e6c96a;
+}
+
+.edit-button {
+    color: #f1d36e;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.edit-button:hover {
+    color: #dcbf6a;
+    text-decoration: underline;
+}
+
+.save-button {
+    background-color: #f1d36e;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-button:hover {
+    background-color: #dcbf6a;
+}
+
+.save-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f1d36e;
+}
+
+.cancel-button {
+    background-color: transparent;
+    border: 1px solid #8a5302ff;
+    color: #8a5302ff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancel-button:hover {
+    background-color: #f3f4f6;
+}
+
+.guest-signup-btn {
+    background-color: #f1d36e;
+    color: #ffffff;
+}
+
+.guest-signup-btn:hover {
+    background-color: #dcbf6a;
+}
