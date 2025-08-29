@@ -19,6 +19,14 @@ interface Product {
   tallImage?: boolean;
 }
 
+interface CartItem {
+  id: string;
+  name: string;
+  price: string;
+  qty: number;
+  image?: string;
+}
+
 const products: Record<string, Product[]> = {
   "Pre-Shampoo": [
     {
@@ -181,13 +189,20 @@ export default function ProductsPage() {
   const green = "#28a745";
 
   const getItemQty = (id: string) => {
-    const item = cart.find((i: any) => i.id === id);
+    const item: CartItem | undefined = cart.find((i: CartItem) => i.id === id);
     return item ? item.qty : 0;
   };
 
   const handleAddToCart = (product: Product, shade?: Shade) => {
     const itemId = shade ? `${product.name} - ${shade.name}` : product.name;
-    addToCart({ id: itemId, name: itemId, price: product.price || "$0", qty: 1, image: product.image });
+    const newItem: CartItem = {
+      id: itemId,
+      name: itemId,
+      price: product.price || "$0",
+      qty: 1,
+      image: product.image,
+    };
+    addToCart(newItem);
     setBannerMessage(`${itemId} added to cart!`);
   };
 
@@ -302,10 +317,8 @@ export default function ProductsPage() {
                             </div>
                           )}
                         </div>
-
                       </div>
 
-                      {/* Shade dropdown OUTSIDE the card */}
                       {isLuxeColor && expandedProduct === item.name && (
                         <div
                           className="shade-dropdown floating"
@@ -345,7 +358,6 @@ export default function ProductsPage() {
                           })}
                         </div>
                       )}
-
                     </motion.div>
                   );
                 })}
