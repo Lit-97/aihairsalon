@@ -35,6 +35,10 @@ const GoogleIcon = () => (
 type FirebaseError = Error & { code?: string };
 
 export default function SignInPage() {
+  return <SignInForm />;
+}
+
+function SignInForm() {
   const { signInWithEmail, signInWithGoogle, signInAnonymously, user, loading } =
     useAuth();
   const router = useRouter();
@@ -44,6 +48,9 @@ export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const gold = "#d4af37";
+  const green = "#28a745";
 
   useEffect(() => {
     if (searchParams.get("verifyEmail") === "true") {
@@ -95,9 +102,6 @@ export default function SignInPage() {
       </main>
     );
   }
-
-  const gold = "#d4af37";
-  const green = "#28a745";
 
   return (
     <>
