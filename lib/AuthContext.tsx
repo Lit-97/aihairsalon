@@ -56,14 +56,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signInWithEmail = async (email: string, password: string) => {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    if (!userCredential.user.emailVerified) {
-      await signOut(auth);
-      const error: any = new Error("Please verify your email before signing in.");
-      error.code = "auth/email-not-verified";
-      throw error;
-    }
-  };
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  if (!userCredential.user.emailVerified) {
+    await signOut(auth);
+
+    const error = new Error("Please verify your email before signing in.") as Error & { code: string };
+    error.code = "auth/email-not-verified";
+
+    throw error;
+  }
+};
 
   const signUpWithEmail = async (
     email: string,
