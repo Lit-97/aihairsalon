@@ -16,22 +16,26 @@ export default function ForgotPasswordPage() {
   const gold = "#d4af37";
   const pink = "#f8d7df";
 
-  const handleReset = async (e: React.FormEvent) => {
+  const handleReset = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setMessage("");
     try {
       await sendPasswordResetEmail(email);
       setMessage("Password reset email sent! Please check your inbox.");
-    } catch (err: any) {
-      setError(err.message || "Failed to send reset email.");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to send reset email.");
+      }
     }
   };
 
   return (
     <main
       className="flex items-center justify-center min-h-screen px-4"
-      style={{backgroundColor: "#EFE6DD",}}
+      style={{ backgroundColor: "#EFE6DD" }}
     >
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-md text-center border border-pink-100">
         <h1
@@ -45,7 +49,7 @@ export default function ForgotPasswordPage() {
         </h1>
 
         <p className="mb-6 text-gray-700">
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we&apos;ll send you a link to reset your password.
         </p>
 
         <form onSubmit={handleReset} className="space-y-4">
@@ -79,7 +83,8 @@ export default function ForgotPasswordPage() {
           <>
             <p className="text-green-600 mt-4">{message}</p>
             <p className="text-sm text-gray-600 mt-2">
-              If you don’t see the email in your inbox, please check your spam folder or add <code>no-reply@firebaseapp.com</code> to your contacts.
+              If you don’t see the email in your inbox, please check your spam folder or add{" "}
+              <code>no-reply@firebaseapp.com</code> to your contacts.
             </p>
           </>
         )}
