@@ -52,19 +52,22 @@ export default function SignInPage() {
   const closeBanner = () => setShowVerifyBanner(false);
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await signInWithEmail(email, password);
-    } catch (err: any) {
+  e.preventDefault();
+  setError("");
+  try {
+    await signInWithEmail(email, password);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
       if (
-        err.code === "auth/email-not-verified" ||
+        "code" in err && (err as any).code === "auth/email-not-verified" ||
         err.message.toLowerCase().includes("verify your email")
       ) {
         setError("Please verify your email before signing in.");
       } else {
         setError(err.message);
       }
+    } else {
+      setError("An unknown error occurred.");
     }
   };
 
@@ -122,62 +125,71 @@ export default function SignInPage() {
 
           {/* Google Sign In */}
           <button
-            onClick={async () => {
-              setError("");
-              try {
-                await signInWithGoogle();
-                router.push("/");
-              } catch (err: any) {
-                setError(err.message);
-              }
-            }}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-full font-medium transition"
-            style={{
-              border: `1px solid ${gold}`,
-              color: gold,
-              backgroundColor: "#fff",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = gold;
-              e.currentTarget.style.color = "#1a1a1a";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#fff";
-              e.currentTarget.style.color = gold;
-            }}
-          >
-            <GoogleIcon />
-            Sign in with Google
-          </button>
+  onClick={async () => {
+    setError("");
+    try {
+      await signInWithGoogle();
+      router.push("/");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
+  }}
+  className="w-full flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-full font-medium transition"
+  style={{
+    border: `1px solid ${gold}`,
+    color: gold,
+    backgroundColor: "#fff",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = gold;
+    e.currentTarget.style.color = "#1a1a1a";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = "#fff";
+    e.currentTarget.style.color = gold;
+  }}
+>
+  <GoogleIcon />
+  Sign in with Google
+</button>
 
           {/* Continue as Guest */}
           <button
-            onClick={async () => {
-              setError("");
-              try {
-                await signInAnonymously();
-                router.push("/");
-              } catch (err: any) {
-                setError(err.message);
-              }
-            }}
-            className="w-full px-4 py-2 mb-4 rounded-full font-medium transition"
-            style={{
-              border: `1px solid ${gold}`,
-              color: gold,
-              backgroundColor: "transparent",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = gold;
-              e.currentTarget.style.color = "#1a1a1a";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = gold;
-            }}
-          >
-            Continue as Guest
-          </button>
+  onClick={async () => {
+    setError("");
+    try {
+      await signInAnonymously();
+      router.push("/");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
+  }}
+  className="w-full px-4 py-2 mb-4 rounded-full font-medium transition"
+  style={{
+    border: `1px solid ${gold}`,
+    color: gold,
+    backgroundColor: "transparent",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = gold;
+    e.currentTarget.style.color = "#1a1a1a";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = "transparent";
+    e.currentTarget.style.color = gold;
+  }}
+>
+  Continue as Guest
+</button>
+
 
           <div className="flex items-center my-4">
             <div className="flex-grow border-t border-gray-300"></div>
