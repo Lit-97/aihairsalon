@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/styles/Services.module.css";
 
 const services = [
@@ -58,8 +59,21 @@ export default function Services() {
             whileHover="hover"
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <Link href={`/services`} className={styles.serviceCard} aria-label={`Service: ${name} - ${description}`}>
-              <img src={icon} alt={`${name} icon`} className={styles.serviceIconImg} loading="lazy" />
+            <Link
+              href={`/services`}
+              className={styles.serviceCard}
+              aria-label={`Service: ${name} - ${description}`}
+            >
+              <div className={styles.serviceIconWrapper}>
+                <Image
+                  src={icon}
+                  alt={`${name} icon`}
+                  fill
+                  style={{ objectFit: "contain" }}
+                  loading="lazy"
+                />
+              </div>
+
               <h3 className={styles.serviceName}>{name}</h3>
               <p className={styles.serviceDescription}>{description}</p>
             </Link>

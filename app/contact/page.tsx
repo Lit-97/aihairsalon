@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ContactPage() {
   const gold = "#dcbf6a";
@@ -117,7 +118,14 @@ export default function ContactPage() {
         </motion.div>
 
         <div className="contact-left">
-          <img src="/team.jpg" alt="Luxury hair salon" className="contact-hero-image" />
+          <Image
+            src="/team.jpg"
+            alt="Luxury hair salon"
+            className="contact-hero-image"
+            width={800}
+            height={600}
+            priority
+          />
           <div className="contact-info">
             <h2 className="luxury-tagline">Luxury is in the details. Let us create your perfect look.</h2>
             <div className="info-grid">

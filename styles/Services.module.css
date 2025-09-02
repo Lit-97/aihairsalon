@@ -50,7 +50,7 @@
     background-color: #ffffff;
     border-radius: 1.5rem;
     border: 2px solid transparent;
-    padding: 2rem;
+    padding: 2rem .2rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     cursor: pointer;
@@ -58,7 +58,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: 320px;
+    min-height: 330px;
     box-sizing: border-box;
     color: #6b6b6b;
 }
@@ -70,10 +70,15 @@
 }
 
 .serviceIconImg {
-    width: 120px;
-    height: 120px;
     object-fit: contain;
     margin: 0 auto 1.5rem auto;
+}
+.serviceIconWrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
 }
 
 .serviceName {

@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import { signInWithGoogle, signOutUser } from "../lib/firebaseAuth";
+import type { User } from "firebase/auth"; // ✅ Import User type from Firebase
 
 export default function GoogleSignInButton() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null); // ✅ Strongly typed state
 
   const handleSignIn = async () => {
     try {
-      const { user } = await signInWithGoogle();
-      setUser(user);
+      const result = await signInWithGoogle();
+      setUser(result.user); // Firebase User object
     } catch (error) {
       console.error("Sign-in failed:", error);
     }

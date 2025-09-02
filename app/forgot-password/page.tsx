@@ -12,9 +12,7 @@ export default function ForgotPasswordPage() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // Theme colors
   const gold = "#d4af37";
-  const pink = "#f8d7df";
 
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,29 +21,24 @@ export default function ForgotPasswordPage() {
     try {
       await sendPasswordResetEmail(email);
       setMessage("Password reset email sent! Please check your inbox.");
-    } catch (err: any) {
-      setError(err.message || "Failed to send reset email.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to send reset email.");
+      }
     }
   };
 
   return (
-    <main
-      className="flex items-center justify-center min-h-screen px-4"
-      style={{backgroundColor: "#EFE6DD",}}
-    >
+    <main className="flex items-center justify-center min-h-screen px-4" style={{ backgroundColor: "#EFE6DD" }}>
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-md text-center border border-pink-100">
-        <h1
-          className="text-3xl font-serif font-bold mb-6"
-          style={{
-            color: gold,
-            textShadow: `0 0 6px rgba(212, 175, 55, 0.6)`,
-          }}
-        >
+        <h1 className="text-3xl font-serif font-bold mb-6" style={{ color: gold, textShadow: `0 0 6px rgba(212, 175, 55, 0.6)` }}>
           Forgot Password
         </h1>
 
         <p className="mb-6 text-gray-700">
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we&apos;ll send you a link to reset your password.
         </p>
 
         <form onSubmit={handleReset} className="space-y-4">
@@ -54,22 +47,15 @@ export default function ForgotPasswordPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-200 text-gray-800"
+            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800"
             required
           />
           <button
             type="submit"
             className="w-full px-4 py-3 rounded-full font-semibold transition"
-            style={{
-              backgroundColor: gold,
-              color: "#1a1a1a",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#b79520";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = gold;
-            }}
+            style={{ backgroundColor: gold, color: "#1a1a1a" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#b79520"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = gold; }}
           >
             Send Reset Email
           </button>
@@ -79,7 +65,7 @@ export default function ForgotPasswordPage() {
           <>
             <p className="text-green-600 mt-4">{message}</p>
             <p className="text-sm text-gray-600 mt-2">
-              If you don’t see the email in your inbox, please check your spam folder or add <code>no-reply@firebaseapp.com</code> to your contacts.
+              If you don&apost;t see the email in your inbox, please check your spam folder or add <code>no-reply@firebaseapp.com</code> to your contacts.
             </p>
           </>
         )}

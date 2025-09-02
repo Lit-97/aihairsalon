@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useBooking } from "../BookingContext";
 import "../../../styles/BookingsPage.css";
 
-// Map of prices for each category and service
 const servicePrices: Record<string, Record<string, string>> = {
     Cuts: {
         "Women's Cut": "$50+",
@@ -60,13 +59,8 @@ const servicePrices: Record<string, Record<string, string>> = {
 
 export default function ServiceSelectionPage() {
     const router = useRouter();
-    const {
-        selectedCategory,
-        selectedService,
-        setSelectedService,
-    } = useBooking();
+    const { selectedCategory, setSelectedService } = useBooking();
 
-    // Redirect if no category
     useEffect(() => {
         if (!selectedCategory) {
             router.push("/bookings");
@@ -74,10 +68,8 @@ export default function ServiceSelectionPage() {
     }, [selectedCategory, router]);
 
     useEffect(() => {
-        if (selectedService) {
-            setSelectedService(null);
-        }
-    }, []);
+        setSelectedService(null);
+    }, [setSelectedService]);
 
     if (!selectedCategory) return null;
 

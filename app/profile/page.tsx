@@ -8,6 +8,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { UserInfo } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import { getAuth, sendPasswordResetEmail, reauthenticateWithCredential, updateEmail, sendEmailVerification, EmailAuthProvider } from "firebase/auth";
 
 const US_STATES = [
@@ -54,19 +56,18 @@ export default function ProfilePage() {
   const displayName = user?.displayName ?? null;
   const email = user?.email ?? null;
   const photoURL = user?.photoURL ?? null;
-  const providerData = Array.isArray(user?.providerData) ? (user!.providerData as any[]) : [];
+  const providerData: UserInfo[] = Array.isArray(user?.providerData) ? user.providerData : [];
 
   const memberSince = user?.metadata?.creationTime ?? null;
   const lastLogin = user?.metadata?.lastSignInTime ?? null;
 
   const isGuest = !!user?.isAnonymous;
-  const isGoogle = providerData.some((p) => p?.providerId === "google.com");
-  const isEmail = providerData.some((p) => p?.providerId === "password");
+  const isEmail = providerData.some((p) => p.providerId === "password");
 
   const [loadingData, setLoadingData] = useState(true);
-  const [appointments, setAppointments] = useState<{ id: string; date?: string; serviceName?: string }[]>([]);
-  const [orders, setOrders] = useState<{ id: string; status?: string; total?: number }[]>([]);
-  const [wishlist, setWishlist] = useState<{ id: string; productName?: string; description?: string; imageUrl?: string }[]>([]);
+  const [appointments, setAppointments] = useState<Array<{ id: string; date?: string; serviceName?: string }>>([]);
+  const [orders, setOrders] = useState<Array<{ id: string; status?: string; total?: number }>>([]);
+  const [wishlist, setWishlist] = useState<Array<{ id: string; productName?: string; description?: string; imageUrl?: string }>>([]);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -110,9 +111,9 @@ export default function ProfilePage() {
     (async () => {
       setLoadingData(true);
       try {
-        const fetchedAppointments: typeof appointments = [];
-        const fetchedOrders: typeof orders = [];
-        const fetchedWishlist: typeof wishlist = [];
+        const fetchedAppointments: { id: string; date?: string; serviceName?: string }[] = [];
+        const fetchedOrders: { id: string; status?: string; total?: number }[] = [];
+        const fetchedWishlist: { id: string; productName?: string; description?: string; imageUrl?: string }[] = [];
         if (!mounted) return;
         setAppointments(fetchedAppointments);
         setOrders(fetchedOrders);
@@ -152,7 +153,7 @@ export default function ProfilePage() {
     if (!user) return;
 
     try {
-      // Step 1: Ask for current email and password to re-authenticate
+
       const currentEmail = prompt("Enter your current email:");
       if (!currentEmail) {
         alert("Email is required.");
@@ -168,41 +169,36 @@ export default function ProfilePage() {
       const credential = EmailAuthProvider.credential(currentEmail, currentPassword);
       await reauthenticateWithCredential(user, credential);
 
-      // Step 2: Ask for the new email
       const newEmail = prompt("Enter your new email:");
       if (!newEmail) {
         alert("New email is required.");
         return;
       }
 
-      // Step 3: Update the email
       await updateEmail(user, newEmail);
 
-      // Step 4: Send verification to the new email
       await sendEmailVerification(user);
 
-      // Step 5: Inform the user
       alert(
         "Your email has been updated! A verification email has been sent to your new email. " +
         "Please click the link in that email to verify it. Your account will now reflect the new email, but it will be marked as unverified until you complete verification."
       );
-    } catch (error: any) {
-      console.error("Error changing email:", error);
-      if (error.code === "auth/wrong-password") {
+    } catch (error) {
+      const e = error as FirebaseError;
+      console.error("Error changing email:", e);
+      if (e.code === "auth/wrong-password") {
         alert("Incorrect password. Please try again.");
-      } else if (error.code === "auth/invalid-email") {
+      } else if (e.code === "auth/invalid-email") {
         alert("Invalid email format.");
-      } else if (error.code === "auth/email-already-in-use") {
+      } else if (e.code === "auth/email-already-in-use") {
         alert("This email is already in use.");
-      } else if (error.code === "auth/requires-recent-login") {
+      } else if (e.code === "auth/requires-recent-login") {
         alert("Please sign in again before changing your email.");
       } else {
         alert("Failed to update email. Try again.");
       }
     }
   };
-
-
 
   function validateAddressForm() {
     const newErrors = { street: "", city: "", state: "", zip: "" };
@@ -257,12 +253,6 @@ export default function ProfilePage() {
   const formattedAddressAvailable =
     address.street.trim() && address.city.trim() && address.state && address.zip;
 
-  function formatDate(dateString: string | null) {
-    if (!dateString) return "Unknown";
-    const d = new Date(dateString);
-    return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-  }
-
   const handleChangePassword = async () => {
     if (!email) {
       alert("No email found for this account.");
@@ -273,8 +263,9 @@ export default function ProfilePage() {
     try {
       await sendPasswordResetEmail(auth, email);
       alert("Password reset email sent! Check your inbox.");
-    } catch (error: any) {
-      console.error("Error sending password reset email:", error);
+    } catch (error) {
+      const e = error as FirebaseError;
+      console.error("Error sending password reset email:", e);
       alert("Failed to send reset email. Try again.");
     }
   };
@@ -714,28 +705,24 @@ export default function ProfilePage() {
                                 const credential = EmailAuthProvider.credential(currentUser.email!, currentPassword);
 
                                 try {
-                                  // Re-authenticate the user
                                   await reauthenticateWithCredential(currentUser, credential);
 
-                                  // Ask for the new email
                                   const newEmailInput = prompt("Enter your new email:");
                                   if (!newEmailInput || !newEmailInput.trim()) return alert("Email cannot be empty.");
 
-                                  // Update email
                                   await updateEmail(currentUser, newEmailInput.trim());
-
-                                  // Send verification email
                                   await sendEmailVerification(currentUser);
 
                                   alert("Email updated! Check your new email to verify it.");
                                   setEditingEmail(false);
-                                } catch (error: any) {
-                                  console.error("Error updating email:", error);
-                                  if (error.code === "auth/wrong-password") {
+                                } catch (error) {
+                                  const e = error as FirebaseError;
+                                  console.error("Error updating email:", e);
+                                  if (e.code === "auth/wrong-password") {
                                     alert("Incorrect password.");
-                                  } else if (error.code === "auth/invalid-email") {
+                                  } else if (e.code === "auth/invalid-email") {
                                     alert("Invalid email format.");
-                                  } else if (error.code === "auth/email-already-in-use") {
+                                  } else if (e.code === "auth/email-already-in-use") {
                                     alert("This email is already in use.");
                                   } else {
                                     alert("Failed to update email. Try again.");

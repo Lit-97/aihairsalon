@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type Message = {
   role: "user" | "assistant";
@@ -162,10 +163,12 @@ export default function ChatWidget() {
         }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
-        <img
+        <Image
           src="/chatbot.png"
           alt="AI Chatbot"
-          style={{ width: 50, height: 50, objectFit: "contain" }}
+          width={50}
+          height={50}
+          style={{ objectFit: "contain" }}
         />
       </button>
 

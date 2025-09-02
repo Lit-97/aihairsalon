@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+
+const MotionImage = motion(Image);
 
 export default function AboutPage() {
   const gold = "#dcbf6a";
@@ -28,7 +31,7 @@ export default function AboutPage() {
       <section className="hero-section">
         <video
           className="hero-video"
-          src="/about us.mp4"
+          src="/202508290906.mp4"
           autoPlay
           loop
           muted
@@ -69,10 +72,12 @@ export default function AboutPage() {
             At Salon Luxe, every strand is treated with artistry and precision. We believe true beauty lies in timeless elegance, and our mission is to create styles that radiate confidence, sophistication, and grace.
           </motion.p>
         </motion.div>
-        <motion.img
+        <MotionImage
           src="/salon.jpg"
           alt="Luxury salon interior"
           className="split-image"
+          width={1200}
+          height={800}
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -81,10 +86,12 @@ export default function AboutPage() {
 
       {/* SECTION 2 – Our Values */}
       <section className="split-section bg-f8f1e7 reverse">
-        <motion.img
+        <MotionImage
           src="/value.jpg"
           alt="Luxury detail"
           className="split-image"
+          width={1200}
+          height={800}
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -126,7 +133,13 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <img src={img.src} alt={img.title} className="promise-image" />
+              <Image
+                src={img.src}
+                alt={img.title}
+                className="promise-image"
+                width={350}
+                height={300}
+              />
               <h3 className="promise-title">{img.title}</h3>
             </motion.div>
           ))}
@@ -243,8 +256,8 @@ export default function AboutPage() {
 }
 
 .promise-image {
-  width: 350px; /* increased from 200px */
-  height: 300px; /* increased from 200px */
+  width: 350px;
+  height: 300px;
   object-fit: cover;
   border-radius: 1rem;
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
@@ -252,7 +265,7 @@ export default function AboutPage() {
 }
 
 .promise-image:hover {
-  transform: translateY(-10px); /* subtle hover effect */
+  transform: translateY(-10px);
 }
 
 .promise-title {

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image"; // <-- import Image
 import styles from "@/styles/Products.module.css";
 
 const categories = [
@@ -64,15 +65,17 @@ export default function Products() {
             <Link
               href={`/products`}
               aria-label={`Category: ${name} - ${description}`}
-              className={styles.productCardLink} // optional wrapper styling
+              className={styles.productCardLink}
             >
               <div className={styles.productCard}>
                 <div className={styles.productImageContainer}>
-                  <img
+                  <Image
                     src={image}
                     alt={`${name} category`}
                     className={styles.productImage}
-                    loading="lazy"
+                    fill
+                    style={{ objectFit: "contain" }}
+                    sizes="(max-width: 768px) 100vw, 400px"
                   />
                 </div>
                 <div className={styles.productInfo}>

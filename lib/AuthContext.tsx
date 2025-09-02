@@ -16,6 +16,10 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 
+interface AuthError extends Error {
+  code?: string;
+}
+
 type AuthContextType = {
   user: User | null;
   loading: boolean;
@@ -59,7 +63,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     if (!userCredential.user.emailVerified) {
       await signOut(auth);
-      const error: any = new Error("Please verify your email before signing in.");
+      const error: AuthError = new Error("Please verify your email before signing in.");
       error.code = "auth/email-not-verified";
       throw error;
     }
@@ -73,16 +77,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
     if (userCredential.user) {
-      // Send verification email
       await sendEmailVerification(userCredential.user);
 
-      // Update display name if profile info provided
       if (profile) {
         const displayName = `${profile.firstName} ${profile.lastName}`;
         await updateProfile(userCredential.user, { displayName });
       }
 
-      // Sign out after signup
       await signOut(auth);
     }
   };
@@ -99,7 +100,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const updateProfileDisplayName = async (displayName: string) => {
     if (!auth.currentUser) throw new Error("No user is signed in");
     await updateProfile(auth.currentUser, { displayName });
-    setUser({ ...auth.currentUser }); // refresh local state
+    setUser(auth.currentUser);
   };
 
   return (

@@ -15,14 +15,7 @@ export default function BookingFormPage() {
         setClientInfo,
     } = useBooking();
 
-    useEffect(() => {
-        if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) {
-            router.push("/bookings");
-        }
-    }, [selectedCategory, selectedService, selectedDate, selectedTime, router]);
-
-    if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) return null;
-
+    // ✅ All hooks declared at the top level
     const [fullName, setFullName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
@@ -30,6 +23,17 @@ export default function BookingFormPage() {
     const [hairPrefs, setHairPrefs] = useState<string[]>([]);
     const [addOns, setAddOns] = useState<string[]>([]);
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) {
+            router.push("/bookings");
+        }
+    }, [selectedCategory, selectedService, selectedDate, selectedTime, router]);
+
+    // Conditional render after hooks
+    if (!selectedCategory || !selectedService || !selectedDate || !selectedTime) {
+        return null;
+    }
 
     const toggleHairPref = (pref: string) => {
         setHairPrefs((prev) =>
@@ -63,7 +67,6 @@ export default function BookingFormPage() {
 
         setError("");
 
-        // Save client info to context
         const clientInfo: ClientInfo = {
             fullName,
             phone,
@@ -155,7 +158,7 @@ export default function BookingFormPage() {
                         </label>
                     </div>
 
-                    {/* Add-ons (Optional) */}
+                    {/* Add-ons */}
                     <div className="space-y-2">
                         <h3 className="text-lg font-semibold text-gray-800">Add-ons (optional)</h3>
                         <div className="flex flex-col gap-2 text-gray-700">
@@ -175,7 +178,7 @@ export default function BookingFormPage() {
                         </div>
                     </div>
 
-                    {/* Hair & Preferences */}
+                    {/* Hair Preferences */}
                     <div className="space-y-3">
                         <h3 className="text-lg font-semibold text-gray-800">Hair & Preferences</h3>
                         <p className="font-semibold text-gray-700">Hair Type / Condition:</p>

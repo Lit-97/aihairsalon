@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
 import { FiShoppingCart } from "react-icons/fi";
 import { useCart } from "@/lib/CartContext";
+import Image from "next/image";
 
 export default function Navbar() {
   const { user, signOutUser } = useAuth();
@@ -64,10 +65,12 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="mx-4">
-          <img
+          <Image
             src="/logorb.png"
             alt="Salon Luxe Logo"
-            className="h-14 w-auto hover:scale-105 transition-transform duration-300"
+            width={112}
+            height={56}
+            className="hover:scale-105 transition-transform duration-300"
           />
         </Link>
 

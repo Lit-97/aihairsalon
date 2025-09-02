@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link"; // ✅ import Link
+import Link from "next/link";
 import "@/styles/ServicesPage.css";
 
 const services = {

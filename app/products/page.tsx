@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import "@/styles/ProductsPage.css";
 import { useCart } from "@/lib/CartContext";
+import { CartItem } from "@/lib/CartContext";
 
 interface Shade {
   name: string;
@@ -181,7 +183,7 @@ export default function ProductsPage() {
   const green = "#28a745";
 
   const getItemQty = (id: string) => {
-    const item = cart.find((i: any) => i.id === id);
+    const item = cart.find((i: CartItem) => i.id === id);
     return item ? item.qty : 0;
   };
 
@@ -265,9 +267,11 @@ export default function ProductsPage() {
                       transition={{ delay: index * 0.05, duration: 0.4 }}
                     >
                       <div className={`product-card ${item.tallImage ? "tall-card" : ""}`}>
-                        <img
-                          src={item.image}
+                        <Image
+                          src={item.image || "/placeholder.png"}
                           alt={item.name}
+                          width={400}
+                          height={400}
                           className={`product-image ${item.tallImage ? "tall-image" : ""}`}
                         />
                         <div className="product-info">
@@ -302,10 +306,9 @@ export default function ProductsPage() {
                             </div>
                           )}
                         </div>
-
                       </div>
 
-                      {/* Shade dropdown OUTSIDE the card */}
+                      {/* Shade dropdown */}
                       {isLuxeColor && expandedProduct === item.name && (
                         <div
                           className="shade-dropdown floating"
@@ -345,7 +348,6 @@ export default function ProductsPage() {
                           })}
                         </div>
                       )}
-
                     </motion.div>
                   );
                 })}

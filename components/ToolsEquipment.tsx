@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const tools = [
   {
@@ -53,12 +54,13 @@ export default function ToolsEquipment() {
         }}
       >
         <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-lg flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 p-6">
-            <img
+          <div className="md:w-1/2 relative h-80 md:h-[400px] p-6">
+            <Image
               src="/revnew.png"
               alt="Luxury Hair Dryer"
-              className="rounded-3xl shadow-xl w-full object-cover"
-              loading="lazy"
+              fill
+              style={{ objectFit: "contain", borderRadius: "2rem" }}
+              priority
             />
           </div>
 

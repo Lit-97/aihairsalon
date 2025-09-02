@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useBooking } from "./BookingContext";
 import "../../styles/BookingsPageWrapper.css";
 
@@ -81,12 +82,11 @@ const categories: Category[] = [
     },
 ];
 
-// Mapping category names to image paths
 const categoryImages: Record<string, string> = {
-    "Cuts": "/haircut.jpg",
-    "Styling": "/style.webp",
-    "Coloring": "coloring.webp",
-    "Treatments": "treatment.webp",
+    Cuts: "/haircut.jpg",
+    Styling: "/style.webp",
+    Coloring: "/coloring.webp",
+    Treatments: "/treatment.webp",
     "Extensions & Add-Ons": "/exten.webp",
     "Kids' Services": "/child.jpg",
 };
@@ -122,9 +122,7 @@ export default function BookingsPage() {
     return (
         <div className="BookingPageWrapper">
             <div className="booking-container">
-                <h1 className="booking-title shimmer-text">
-                    Book Your Appointment
-                </h1>
+                <h1 className="booking-title shimmer-text">Book Your Appointment</h1>
                 <p className="booking-subtitle">
                     Select a service category to get started.
                 </p>
@@ -153,11 +151,16 @@ export default function BookingsPage() {
                                 if (e.key === "Enter" || e.key === " ") handleCategoryClick(cat);
                             }}
                         >
-                            <div className="category-image">
-                                <img
+                            <div className="category-image relative w-full h-48">
+                                <Image
                                     src={categoryImages[cat.name] || "/images/categories/default.jpg"}
                                     alt={cat.name}
-                                    className="service-icon-img"
+                                    fill
+                                    className="service-icon-img object-cover rounded-lg"
+                                    sizes="(max-width: 768px) 100vw, 
+                         (max-width: 1200px) 50vw, 
+                         33vw"
+                                    priority={cat.name === "Cuts"} // Example: prioritize first card
                                 />
                             </div>
                             <h3 className="service-name">{cat.name}</h3>

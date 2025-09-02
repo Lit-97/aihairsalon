@@ -18,7 +18,7 @@ export default function SchedulePage() {
         setSelectedTime,
     } = useBooking();
 
-    const [exampleTimes, setExampleTimes] = useState<string[]>([
+    const [exampleTimes] = useState<string[]>([
         "9:00 AM",
         "11:00 AM",
         "12:00 PM",

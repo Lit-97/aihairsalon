@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
+import { FirebaseError } from "firebase/app";
 
 const GoogleIcon = () => (
   <svg
@@ -43,14 +44,16 @@ export default function SignUpPage() {
 
   const gold = "#d4af37";
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  // ✅ Line 52: handleSignUp
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     try {
       await signUpWithEmail(email, password, { firstName, lastName });
       router.push("/signin?verifyEmail=true");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as FirebaseError | Error;
+      setError(error.message ?? "Failed to sign up. Try again.");
     }
   };
 
@@ -64,70 +67,48 @@ export default function SignUpPage() {
 
   return (
     <main className="flex items-center justify-center min-h-screen px-4 bg-[#EFE6DD]">
-
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-md text-center border border-pink-100">
-        <h1
-          className="text-3xl font-serif font-bold mb-6"
-          style={{ color: gold, textShadow: "0 0 6px rgba(212, 175, 55, 0.6)" }}
-        >
+        <h1 className="text-3xl font-serif font-bold mb-6" style={{ color: gold, textShadow: "0 0 6px rgba(212, 175, 55, 0.6)" }}>
           Create an Account
         </h1>
 
-        {/* Google Sign Up */}
+        {/* ✅ Line 83: Google Sign Up */}
         <button
           onClick={async () => {
             setError("");
             try {
               await signInWithGoogle();
               router.push("/");
-            } catch (err: any) {
-              setError(err.message);
+            } catch (err: unknown) {
+              const error = err as Error;
+              setError(error.message ?? "Failed to sign in with Google.");
             }
           }}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-full font-medium transition"
-          style={{
-            border: `1px solid ${gold}`,
-            color: gold,
-            backgroundColor: "#fff",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = gold;
-            e.currentTarget.style.color = "#1a1a1a";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#fff";
-            e.currentTarget.style.color = gold;
-          }}
+          style={{ border: `1px solid ${gold}`, color: gold, backgroundColor: "#fff" }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = gold; e.currentTarget.style.color = "#1a1a1a"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#fff"; e.currentTarget.style.color = gold; }}
         >
           <GoogleIcon />
           Sign up with Google
         </button>
 
-        {/* Continue as Guest */}
+        {/* ✅ Line 113: Continue as Guest */}
         <button
           onClick={async () => {
             setError("");
             try {
               await signInAnonymously();
               router.push("/");
-            } catch (err: any) {
-              setError(err.message);
+            } catch (err: unknown) {
+              const error = err as Error;
+              setError(error.message ?? "Failed to sign in as guest.");
             }
           }}
           className="w-full px-4 py-2 mb-4 rounded-full font-medium transition"
-          style={{
-            border: `1px solid ${gold}`,
-            color: gold,
-            backgroundColor: "transparent",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = gold;
-            e.currentTarget.style.color = "#1a1a1a";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = gold;
-          }}
+          style={{ border: `1px solid ${gold}`, color: gold, backgroundColor: "transparent" }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = gold; e.currentTarget.style.color = "#1a1a1a"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = gold; }}
         >
           Continue as Guest
         </button>
@@ -140,64 +121,22 @@ export default function SignUpPage() {
 
         {/* Email Sign Up Form */}
         <form onSubmit={handleSignUp} className="space-y-4 text-left">
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800"
-            required
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800"
-            required
-          />
+          <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800" required />
+          <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800" required />
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800" required />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-gray-800" required />
 
-          <button
-            type="submit"
-            className="w-full px-4 py-3 rounded-full font-semibold transition"
-            style={{ backgroundColor: gold, color: "#1a1a1a" }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b79520")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = gold)}
-          >
+          <button type="submit" className="w-full px-4 py-3 rounded-full font-semibold transition" style={{ backgroundColor: gold, color: "#1a1a1a" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b79520")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = gold)}>
             Sign up with Email
           </button>
           {error && <p className="text-red-500 mt-3 text-center">{error}</p>}
         </form>
 
         <p className="mt-6 text-sm text-gray-800">
-          Already have an account?{" "}
-          <a href="/signin" style={{ color: gold }} className="hover:underline">
-            Sign in
-          </a>
+          Already have an account? <a href="/signin" style={{ color: gold }} className="hover:underline">Sign in</a>
         </p>
 
-        <button
-          onClick={() => router.push("/")}
-          className="mt-4 text-sm font-semibold"
-          style={{ color: gold, cursor: "pointer" }}
-          aria-label="Back to home"
-        >
+        <button onClick={() => router.push("/")} className="mt-4 text-sm font-semibold" style={{ color: gold, cursor: "pointer" }} aria-label="Back to home">
           ← Back to Home
         </button>
       </div>
