@@ -36,6 +36,7 @@ export default function AboutPage() {
           loop
           muted
           playsInline
+          controls
         />
         <div className="hero-overlay" />
         <motion.h1
