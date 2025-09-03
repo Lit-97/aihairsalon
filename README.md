@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+💇‍♀️ Salon Luxe – Next.js Project
 
-## Getting Started
+This project is a modern redesign of the Salon Luxe website, created to showcase my growth as a web developer. The original Salon Luxe site was my first website project. With this new version, I wanted to highlight my improved skills and create a fully interactive, visually appealing site.
 
-First, run the development server:
+Check out the live website here: 🌐 https://salonluxelit.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🎯 Purpose
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The goal of this project was to:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Showcase a professional, polished website redesign ✨
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Demonstrate skills in Next.js, TypeScript, and Firebase 🔥
 
-## Learn More
+Include dynamic features like Google Sign-In and booking forms 🗓️
 
-To learn more about Next.js, take a look at the following resources:
+Integrate an AI-powered chatbot 🤖 for real-time user assistance
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Optimize visual experience with animations and high-quality media 🎥
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Build reusable, maintainable components for a scalable project 🛠️
 
-## Deploy on Vercel
+🛠️ Technologies & Tools Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Framework: Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Language: TypeScript
+
+Styling: CSS Modules, animations via Framer Motion
+
+Authentication & Database: Firebase
+ (Google Auth, Firestore)
+
+Hosting & Deployment: Vercel
+
+AI Integration: Custom AI Chat Widget 🤖
+
+Media & Assets: Optimized images and videos for smooth web performance
+
+Version Control: Git & GitHub
+
+✨ Features
+
+Hero Section with video background and smooth text animations
+
+Interactive booking forms for appointments and services 🗓️
+
+Google Sign-In Authentication 🔑
+
+AI Chatbot for instant user assistance 🤖
+
+Product & service showcase pages 🛍️
+
+Dynamic navigation and reusable components (Navbar, Chat Widget, Featured Products, Services, Tools & Equipment)
+
+High-quality media optimized for fast loading and immersive visuals 🎥
+
+📌 Why This Project is Unique
+
+Demonstrates end-to-end web development skills: design, interactivity, authentication, and deployment
+
+Includes AI integration, showcasing innovation and tech-savvy implementation
+
+Highlights attention to UX and aesthetics, with animations, overlays, and responsive media presentation
+
+Serves as a portfolio-ready project for employers and clients
+
+🚀 Live Demo
+
+Experience the site here: 🌐 https://salonluxelit.vercel.app
