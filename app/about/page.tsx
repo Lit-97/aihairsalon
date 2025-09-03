@@ -31,7 +31,7 @@ export default function AboutPage() {
       <section className="hero-section">
         <video
           className="hero-video"
-          src="/246391.mp4"
+          src="/newabout.mp4"
           autoPlay
           loop
           muted
