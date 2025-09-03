@@ -39,7 +39,8 @@ Key features include:
 ### Links
 
 - GitHub URL: [GitHub Repository](https://github.com/Lit-97/aihairsalon)
-- Live Site URL: [Live Site](https://salonluxelit.vercel.app/)
+- New Site URL: [Live Site](https://salonluxelit.vercel.app/)
+- Old Site URL: [Live Site](https://lit-97.github.io/hair-salon-website/)
 
 
 ## My process
