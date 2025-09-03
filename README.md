@@ -1,70 +1,112 @@
 💇‍♀️ Salon Luxe – Next.js Project
 
-This project is a modern redesign of the Salon Luxe website, created to showcase my growth as a web developer. The original Salon Luxe site was my first website project. With this new version, I wanted to highlight my improved skills and create a fully interactive, visually appealing site.
+This is a solution to a Salon Luxe website redesign project. The goal was to rebuild my first website, showcasing updated skills in Next.js, TypeScript, Firebase, and AI integration. This project highlights my ability to create visually appealing, interactive, and production-ready web applications.
 
-Check out the live website here: 🌐 https://salonluxelit.vercel.app
+Table of contents
 
-🎯 Purpose
+Overview
 
-The goal of this project was to:
+Screenshot
 
-Showcase a professional, polished website redesign ✨
+Links
 
-Demonstrate skills in Next.js, TypeScript, and Firebase 🔥
+My process
 
-Include dynamic features like Google Sign-In and booking forms 🗓️
+Built with
 
-Integrate an AI-powered chatbot 🤖 for real-time user assistance
+What I learned
 
-Optimize visual experience with animations and high-quality media 🎥
+Challenges
 
-Build reusable, maintainable components for a scalable project 🛠️
+Author
 
-🛠️ Technologies & Tools Used
+Overview
 
-Framework: Next.js
+Salon Luxe is a professional website for a luxury hair salon. I rebuilt this site to demonstrate my growth as a developer and to incorporate advanced features like authentication and an AI chatbot.
 
-Language: TypeScript
+Key features include:
 
-Styling: CSS Modules, animations via Framer Motion
-
-Authentication & Database: Firebase
- (Google Auth, Firestore)
-
-Hosting & Deployment: Vercel
-
-AI Integration: Custom AI Chat Widget 🤖
-
-Media & Assets: Optimized images and videos for smooth web performance
-
-Version Control: Git & GitHub
-
-✨ Features
-
-Hero Section with video background and smooth text animations
-
-Interactive booking forms for appointments and services 🗓️
+Hero section with video background 🎥
 
 Google Sign-In Authentication 🔑
 
-AI Chatbot for instant user assistance 🤖
+AI-powered Chatbot integration 🤖
 
-Product & service showcase pages 🛍️
+Booking forms 🗓️
 
-Dynamic navigation and reusable components (Navbar, Chat Widget, Featured Products, Services, Tools & Equipment)
+Product & service showcase pages
 
-High-quality media optimized for fast loading and immersive visuals 🎥
+Animations and smooth transitions with Framer Motion
 
-📌 Why This Project is Unique
+Screenshot
 
-Demonstrates end-to-end web development skills: design, interactivity, authentication, and deployment
 
-Includes AI integration, showcasing innovation and tech-savvy implementation
+Replace this with your own screenshot of the live website
 
-Highlights attention to UX and aesthetics, with animations, overlays, and responsive media presentation
+Links
 
-Serves as a portfolio-ready project for employers and clients
+Live Site URL: 🌐 Salon Luxe
 
-🚀 Live Demo
+Solution URL: GitHub Repository
 
-Experience the site here: 🌐 https://salonluxelit.vercel.app
+My process
+
+I started by planning the site structure and designing reusable components for pages like About, Contact, and Products. Then I:
+
+Set up a Next.js project with TypeScript.
+
+Built reusable React components for sections, cards, buttons, and forms.
+
+Integrated Firebase for authentication and data management.
+
+Added AI chatbot functionality for user interaction.
+
+Optimized images and video backgrounds for a polished visual experience.
+
+Deployed the site to Vercel for production-ready hosting.
+
+Built with
+
+Next.js
+
+TypeScript
+
+CSS Modules & Framer Motion (animations)
+
+Firebase (Authentication & Firestore)
+
+Vercel (Deployment & Hosting)
+
+AI Chatbot integration 🤖
+
+High-quality media assets (optimized images & video)
+
+What I learned
+
+Structuring a complex Next.js project with multiple pages and reusable components
+
+Implementing Google Sign-In authentication with Firebase
+
+Integrating an AI-powered chatbot for real-time user engagement
+
+Optimizing video and image assets for web performance
+
+Using Framer Motion to enhance UI with animations and smooth transitions
+
+Managing a production deployment on Vercel
+
+Challenges
+
+Debugging video playback issues in Vercel deployment (resolved by compressing the video and reducing bitrate)
+
+Integrating Google authentication while handling authorized domains in Firebase
+
+Making sure animations were smooth across different sections and components
+
+Author
+
+Portfolio: My Portfolio
+
+GitHub: @Lit-97
+
+LinkedIn: [Your LinkedIn Here]
