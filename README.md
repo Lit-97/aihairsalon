@@ -1,6 +1,6 @@
-# Frontend Mentor - QR code component solution
+# Salon Luxe – Next.js Project
 
-This is a solution to the [QR code component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This project is a modern redesign of the Salon Luxe website, created to showcase my growth as a web developer. The original Salon Luxe site was my first website project. With this new version, I wanted to highlight my improved skills and create a fully interactive, visually appealing site.
 
 ## Table of contents
 
@@ -10,59 +10,86 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 
 ## Overview
-This is a solution to the QR Code Component challenge on Frontend Mentor. The goal was to build a simple and responsive QR code card using HTML and CSS. It helped me practice working with layout techniques like Flexbox and improve my understanding of spacing, typography, and responsiveness in a small project.
+Salon Luxe is a professional website for a luxury hair salon. I rebuilt this site to demonstrate my growth as a developer and to incorporate advanced features like authentication and an AI chatbot.
+
+Key features include:
+
+• Hero section with video background 🎥
+
+• Google Sign-In Authentication 🔑
+
+• AI-powered Chatbot integration 🤖
+
+• Booking forms 🗓️
+
+• Product & service showcase pages
+
+• Animations and smooth transitions with Framer Motion
 
 
 ### Screenshot
 
-![Screenshot of my QR code component](./images/screenshot.png)
+![Screenshot of Salon Luxe](./public/scofsite.jpg)
 
 
 ### Links
 
-- Solution URL: [GitHub Repository](https://github.com/Lit-97/blog-preview-card-fm)
-- Live Site URL: [Live Site](https://lit-97.github.io/blog-preview-card-fm/)
+- GitHub URL: [GitHub Repository](https://github.com/Lit-97/aihairsalon)
+- Live Site URL: [Live Site](https://salonluxelit.vercel.app/)
 
 
 ## My process
-I started by setting up the basic HTML structure with a `main` container, an `img` for the images, and text elements using `h1` and `p`. After that, I styled the layout using CSS Flexbox to center everything in the middle of the screen.
+I started by planning the site structure and designing reusable components for pages like About, Contact, and Products. Then I:
 
-I added padding, a box shadow, and border-radius to create a card-like appearance. Then, I adjusted the font styles using a Google Font (Figtree) and used `rem` units for scalable sizing. I finished by adding responsiveness for smaller screens using a simple media query.
+1. Set up a Next.js project with TypeScript.
+
+2. Built reusable React components for sections, cards, buttons, and forms.
+
+3. Integrated Firebase for authentication and data management.
+
+4. Added AI chatbot functionality for user interaction.
+
+5. Optimized images and video backgrounds for a polished visual experience.
+
+6. Deployed the site to Vercel for production-ready hosting.
 
 
 ### Built with
 
-- Semantic HTML5
-- CSS Flexbox
-- Mobile-first design
-- `rem` units for responsive sizing
-- Google Fonts (Figtree)
-- Vanilla CSS (no frameworks)
+- Next.js
 
-### What I learned
+- TypeScript
 
-- How to structure a simple HTML layout using semantic tags like `<main>`, `<h1>`, and `<p>`.
-- How to center content vertically and horizontally using Flexbox.
-- How to use CSS box shadows and transitions to add interactivity and depth to the card, mimicking a real-world UI feel.
-- How `max-width` helps keep layouts looking clean on larger screens.
-- The importance of resetting default browser styles with `margin: 0` on `body`.
+- CSS Modules & Framer Motion (animations)
 
+- Firebase (Authentication & Firestore)
 
+- Vercel (Deployment & Hosting)
 
-### Useful resources
+- AI Chatbot integration 🤖
 
-- [MDN Web Docs](https://developer.mozilla.org/) - My go-to reference for HTML and CSS. I used it to better understand Flexbox, CSS units like `rem`, and general styling practices.
-- [MDN Flexbox Guide](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) - Helped me understand how Flexbox works and how to center elements using it.
+- High-quality media assets (optimized images & video)
 
+### Growth & Insights 🌱
+
+- Structuring a complex Next.js project with multiple pages and reusable components
+
+- Implementing Google Sign-In authentication with Firebase
+
+- Integrating an AI-powered chatbot for real-time user engagement
+
+- Optimizing video and image assets for web performance
+
+- Using Framer Motion to enhance UI with animations and smooth transitions
+
+- Managing a production deployment on Vercel
 
 
 ## Author
 
 - Website - [My Portfolio](https://lit-97.github.io/portfolio/)
-- Frontend Mentor - [@Lit-97](https://www.frontendmentor.io/profile/Lit-97)
 - GitHub  - [@Lit-97](https://github.com/Lit-97)
