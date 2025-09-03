@@ -38,7 +38,6 @@ Key features include:
 
 ### Links
 
-- GitHub URL: [GitHub Repository](https://github.com/Lit-97/aihairsalon)
 - New Site URL: [Salon Luxe (NEW)](https://salonluxelit.vercel.app/)
 - Old Site URL: [Salon Luxe (OLD)](https://lit-97.github.io/hair-salon-website/)
 
