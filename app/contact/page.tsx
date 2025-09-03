@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ContactPage() {
   const gold = "#dcbf6a";
@@ -142,7 +143,9 @@ export default function ContactPage() {
                 <p>hello@salonluxe.com</p>
               </div>
             </div>
-            <button className="cta-button">Book Your Appointment</button>
+            <Link href="/bookings">
+              <button className="cta-button">Book Your Appointment</button>
+            </Link>
           </div>
         </div>
       </section>
