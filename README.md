@@ -1,6 +1,6 @@
 # Salon Luxe – Next.js Project
 
-This project is a modern redesign of the Salon Luxe website, created to showcase my growth as a web developer. The original Salon Luxe site was my first website project. With this new version, I wanted to highlight my improved skills and create a fully interactive, visually appealing site.
+Salon Luxe is a modern, beautifully designed next-gen website for a luxury hair salon. Created to emphasize both visual sophistication and robust technical capabilities, this site showcases my growth as a front-end developer with Next.js and modern design tools.
 
 ## Table of contents
 
@@ -14,7 +14,7 @@ This project is a modern redesign of the Salon Luxe website, created to showcase
 
 
 ## Overview
-Salon Luxe is a professional website for a luxury hair salon. I rebuilt this site to demonstrate my growth as a developer and to incorporate advanced features like authentication and an AI chatbot.
+Salon Luxe is a professional website for a luxury hair salon. I rebuilt this site to demonstrate my growth as a developer and to incorporate advanced features like authentication and an AI chatbot. Salon Luxe delivers an elegant and user-friendly digital experience, blending salon services with curated product selections—all powered by a sleek, professional interface.
 
 Key features include:
 
